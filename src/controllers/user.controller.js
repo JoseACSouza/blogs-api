@@ -1,7 +1,7 @@
 const tokenGenerate = require('../auth/tokenGenerate');
 const { userServices } = require('../services');
 
-const createUser = async (req, res) => {
+const create = async (req, res) => {
   try {
     const { displayName, email, password } = req.body;
     if (req.body.image) {
@@ -30,7 +30,21 @@ const index = async (res) => {
   }
 };
 
+const show = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await userServices.getByUserId(id);
+    if (!user) {
+      return res.status(404).json({ message: 'User does not exist' });
+    }
+    return res.status(200).json(user);
+  } catch (e) {
+    return res.status(500).json(e);
+  }
+};
+
 module.exports = {
-  createUser,
+  create,
   index,
+  show,
 };

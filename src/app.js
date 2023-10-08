@@ -20,10 +20,11 @@ app.post(
   '/user',
   userMiddleware.validateUser,
   userMiddleware.validateUserPassword,
-  async (req, res) => userController.createUser(req, res),
+  async (req, res) => userController.create(req, res),
 );
 
 app.get('/user', validateJWT, async (_req, res) => userController.index(res));
+app.get('/user/:id', validateJWT, async (req, res) => userController.show(req, res));
 
 // ...
 

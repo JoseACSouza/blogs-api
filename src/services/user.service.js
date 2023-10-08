@@ -11,6 +11,7 @@ const getByEmail = async (email) => User.findOne({
 });
 
 const getByUserId = async (id) => User.findOne({
+  attributes: { exclude: 'password' },
   where: {
     id,
   },

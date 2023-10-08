@@ -26,7 +26,20 @@ const validateUserPassword = async (req, res, next) => {
   next();
 };
 
+const validateExistUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await userServices.getByUserId(id);
+    if (!user) {
+      return res.sendStatus(404);
+    }
+  } catch (e) {
+    return res.status(500).json(e);
+  }
+};
+
 module.exports = {
   validateUser,
   validateUserPassword,
+  validateExistUser,
 };
