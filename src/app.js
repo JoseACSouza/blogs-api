@@ -1,5 +1,7 @@
 const express = require('express');
-const { loginController } = require('./controllers');
+const { loginController, userController } = require('./controllers');
+const { userMiddleware } = require('./middlewares');
+// const validateJWT = require('./auth/validateJWT');
 
 // ...
 
@@ -12,9 +14,14 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 
-app.post('/login', (req, res) => {
-  loginController(req, res);
-});
+app.post('/login', (req, res) => loginController(req, res));
+
+app.post( 
+  '/user',
+  userMiddleware.validateUser,
+  userMiddleware.validateUserPassword,
+  async (req, res) => userController.createUser(req, res),
+);
 
 // ...
 

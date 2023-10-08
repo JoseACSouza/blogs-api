@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
     const token = jwt.sign({ data: { userId: user.id } }, secret, jwtConfig);
 
     /* Por fim, nós devolvemos essa informação ao usuário. */
-    res.status(200).json({ token });
+    return res.status(200).json({ token });
   } catch (err) {
     return res.status(500).json({ message: 'Erro interno', error: err.message });
   }
