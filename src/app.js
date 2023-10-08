@@ -32,6 +32,7 @@ app.post(
   categoryMiddleware.validateCategory, 
   async (req, res) => categoryController.create(req, res),
 );
+app.get('/categories', validateJWT, async (_req, res) => categoryController.index(res));
 // ...
 
 // É importante exportar a constante `app`,
