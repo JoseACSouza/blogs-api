@@ -12,16 +12,25 @@ const createUser = async (req, res) => {
         .createUser({ displayName, email, password, image: null });
     }
     const jwtConfig = {
-      expiresIn: '8h',
       algorithm: 'HS256',
     };
-    const token = tokenGenerate(email, jwtConfig);
+    const user = userServices.getByEmail(email);
+    const token = tokenGenerate(user, jwtConfig);
     return res.status(201).json({ token });
   } catch (e) {
     res.status(500).json({ message: e });
   }
 };
 
+const index = async (res) => {
+  try {
+    return res.status(200).json(await userServices.getAll());
+  } catch (e) {
+    return res.status(500).json(e);
+  }
+};
+
 module.exports = {
   createUser,
+  index,
 };
