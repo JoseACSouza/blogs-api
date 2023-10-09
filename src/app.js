@@ -1,6 +1,11 @@
 const express = require('express');
-const { loginController, userController, categoryController } = require('./controllers');
-const { userMiddleware, categoryMiddleware } = require('./middlewares');
+const { loginController,
+  userController,
+  categoryController,
+  postController } = require('./controllers');
+const { userMiddleware,
+  categoryMiddleware,
+  postMiddleware } = require('./middlewares');
 const validateJWT = require('./auth/validateJWT');
 
 // ...
@@ -33,6 +38,14 @@ app.post(
   async (req, res) => categoryController.create(req, res),
 );
 app.get('/categories', validateJWT, async (_req, res) => categoryController.index(res));
+
+app.post(
+  '/post',
+  validateJWT,
+  postMiddleware.validatePost,
+  postMiddleware.validateExistingCategories,
+  async (req, res) => postController.create(req, res),
+);
 // ...
 
 // É importante exportar a constante `app`,
