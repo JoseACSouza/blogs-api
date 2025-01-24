@@ -1,10 +1,3 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+"Neste projeto desenvolvi uma API e um banco de dados para a produção de conteúdo para um blog! Desenvolvi esta aplicação em `Node.js` usando o pacote `sequelize` para fazer um `CRUD` de posts.1. Desenvolvi endpoints que estarão conectados ao seu banco de dados seguindo os princípios do REST; 2. Para fazer um post é necessário usuário e login, portanto será trabalhada a **relação entre** `user` e `post`; 3. Será necessária a utilização de categorias para os posts, trabalhando, assim, a **relação de** `posts` para `categories` e de `categories` para `posts`." \
+stacks: ["MySQL", "Docker", "NodeJS", "Sequelize"] \
+instructions: "Para testar em sua máquina, clone o repositório e use os comandos npm install, docker-compose up"
